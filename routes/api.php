@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\apicontroller;
 use App\Http\Controllers\direccionController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,16 +24,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'v1','namespace' =>'App\Http\Controllers'], function(){
-   
 
-   
+
+
     // routes/api.php
-    
+
     Route::get('phone/{numero}', [direccionController::class, 'getDireccionesByPhone']);
     Route::post('direcciones', [direccionController::class, 'postDireccion']);
+    Route::delete('direcciones/{id}', [direccionController::class, 'deleteDireccion']);
+    Route::put('direcciones/{id}', [direccionController::class, 'putDireccion']);
+
+
+
+
+
+
+
     Route::post('petapa', [apicontroller::class, 'petapa']);
-
-
     Route::post('amatitlan', [apicontroller::class, 'amatitlan']);
     Route::post('antigua', [apicontroller::class, 'antigua']);
     Route::post('cascata', [apicontroller::class, 'cascata']);
@@ -60,10 +68,10 @@ Route::group(['prefix' => 'v1','namespace' =>'App\Http\Controllers'], function()
 
     Route::get('products/{id_tienda}', [apicontroller::class, 'listPetapa']);
 
-    Route::get('products/amatitlan', [apicontroller::class, 'listamatitlan']);
+    Route::get('products/{id_tienda}', [apicontroller::class, 'listamatitlan']);
     Route::get('products/antigua', [apicontroller::class, 'listantigua']);
     Route::get('products/cascata', [apicontroller::class, 'listcascata']);
-    Route::get('products/centrohistorico', [apicontroller::class, 'listcentrohistorico']);
+    Route::get('products/{id_tienda}', [apicontroller::class, 'listcentrohistorico']);
     Route::get('products/chimaltenango', [apicontroller::class, 'listchimaltenango']);
     Route::get('products/encinal', [apicontroller::class, 'listencinal']);
     Route::get('products/escalacarretera', [apicontroller::class, 'listescalacarretera']);
@@ -76,22 +84,32 @@ Route::group(['prefix' => 'v1','namespace' =>'App\Http\Controllers'], function()
     Route::get('products/telares', [apicontroller::class, 'listtelares']);
     Route::get('products/zona4', [apicontroller::class, 'listzona4']);
     Route::get('products/zona14', [apicontroller::class, 'listzona14']);
-    Route::get('products/zona10', [apicontroller::class, 'listzona10']);
+    Route::get('products/{id_tienda}', [apicontroller::class, 'listzona10']);
     Route::get('products/majadas', [apicontroller::class, 'listzona10']);
     Route::get('products/plazacentral', [apicontroller::class, 'listplazacentral']);
     Route::get('products/xelaminerva', [apicontroller::class, 'listxelaminerva']);
     Route::get('products/xelaminerva', [apicontroller::class, 'listxelaminerva']);
     Route::get('products/praderaxela', [apicontroller::class, 'listpraderaxela']);
     Route::get('products/vistahermosa', [apicontroller::class, 'listvistahermosa']);
-    Route::delete('petapa/{id}', [apicontroller::class, 'eliminarProducto']);
     Route::get('/', '\App\Http\Controllers\UserController@index');
     // Agregar la siguiente línea a tus rutas
-    Route::delete('/direcciones/{id}', 'direccionController@deleteDireccion');
+ // api.php
 
-    
-    
+
+
+
+
+
+
+
+
     // Ejemplo de ruta
-     
-    
+
+
 });
+
+
+
+// Rutas protegidas que requieren autenticación
+
 

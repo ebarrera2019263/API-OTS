@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Petapa', function (Blueprint $table) {
-            $table->id();
+             $table->bigInteger('ID')->primary();
             $table->string('post_title');
             $table->string('sku');
             $table->decimal('price', 8, 2);

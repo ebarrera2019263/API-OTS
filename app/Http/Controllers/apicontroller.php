@@ -32,29 +32,35 @@ class apicontroller extends Controller
     public function petapa(Request $request)
     {
         $data = $request->json()->all();
-    
+
         foreach ($data as $item) {
-            $item['id_tienda'] = 1; // Asigna el id_tienda correspondiente a Petapa
-            Petapa::create($item);
+            $item['id_tienda'] = 28; // Asigna el id_tienda correspondiente a Petapa
+            $idFromJson = $item['ID']; // Extrae el ID del JSON
+            unset($item['ID']); // Elimina el campo ID para evitar duplicados (ya que no es autoincremental)
+
+            // Crea el modelo con el ID del JSON
+            Petapa::updateOrCreate(['ID' => $idFromJson], $item);
         }
-    
+
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => Petapa::where('id_tienda', 1)->get(), // Filtra por el id_tienda
+            'body'   => Petapa::where('id_tienda', 28)->get(),
         ]);
     }
-    
+
     public function listPetapa($id_tienda)
-    {
-        $productos = Petapa::where('id_tienda', $id_tienda)->get();
-    
-        return response()->json([
-            'ok'     => true,
-            'status' => 200,
-            'body'   => $productos,
-        ]);
-    }
+{
+    $productos = Petapa::where('id_tienda', $id_tienda)->get();
+
+    return response()->json([
+        'ok'     => true,
+        'status' => 200,
+        'body'   => $productos,
+    ]);
+}
+
+
 
 
 
@@ -63,23 +69,23 @@ class apicontroller extends Controller
     public function amatitlan(Request $request)
     {
         $data = $request->json()->all();
-    
+
         foreach ($data as $item) {
-            $item['id_tienda'] = 2; // Asigna el id_tienda correspondiente a Petapa
+            $item['id_tienda'] = 23; // Asigna el id_tienda correspondiente a Petapa
             Petapa::create($item);
         }
-    
+
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => Petapa::where('id_tienda', 2)->get(), // Filtra por el id_tienda
+            'body'   => Petapa::where('id_tienda', 23)->get(), // Filtra por el id_tienda
         ]);
     }
-    
+
     public function listamatitlan($id_tienda)
     {
         $productos = Petapa::where('id_tienda', $id_tienda)->get();
-    
+
         return response()->json([
             'ok'     => true,
             'status' => 200,
@@ -93,29 +99,30 @@ class apicontroller extends Controller
 
 
 
-    
-    
 
-  
+
+
+
 
     public function antigua(Request $request)
     {
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            antiguaguatemala::create($item);
+            $item['id_tienda'] = 12; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => antiguaguatemala::all(),
+            'body'   => Petapa::where('id_tienda', 12)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listantigua()
+    public function listantigua($id_tienda)
     {
-        $productos = antiguaguatemala::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -128,19 +135,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            cascata::create($item);
+            $item['id_tienda'] = 22; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => cascata::all(),
+            'body'   => Petapa::where('id_tienda', 22)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listcascata()
+    public function listcascata($id_tienda)
     {
-        $productos = cascata::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -154,19 +162,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            centrohistorico::create($item);
+            $item['id_tienda'] = 13; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => centrohistorico::all(),
+            'body'   => Petapa::where('id_tienda', 13)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listcentrohistorico()
+    public function listcentrohistorico($id_tienda)
     {
-        $productos = centrohistorico::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -180,19 +189,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            chimaltenango::create($item);
+            $item['id_tienda'] = 25; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => chimaltenango::all(),
+            'body'   => Petapa::where('id_tienda', 25)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listchimaltenango()
+    public function listchimaltenango( $id_tienda)
     {
-        $productos = chimaltenango::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -206,19 +216,21 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            encinal::create($item);
+            $item['id_tienda'] = 24; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => encinal::all(),
+            'body'   => Petapa::where('id_tienda', 24)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listencinal()
+
+    public function listencinal( $id_tienda)
     {
-        $productos = encinal::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -232,19 +244,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            escalacarretera::create($item);
+            $item['id_tienda'] = 18; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => escalacarretera::all(),
+            'body'   => Petapa::where('id_tienda', 18)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listescalacarretera()
+    public function listescalacarretera($id_tienda)
     {
-        $productos = escalacarretera::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -258,19 +271,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            majadas::create($item);
+            $item['id_tienda'] = 7; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => majadas::all(),
+            'body'   => Petapa::where('id_tienda', 7)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listmajadas()
+    public function listmajadas($id_tienda)
     {
-        $productos = majadas::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -284,13 +298,14 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            mazatenango::create($item);
+            $item['id_tienda'] = 26; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => mazatenango::all(),
+            'body'   => Petapa::where('id_tienda', 26)->get(), // Filtra por el id_tienda
         ]);
     }
 
@@ -310,19 +325,21 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            metrocentrovillanueva::create($item);
+            $item['id_tienda'] = 17; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => metrocentrovillanueva::all(),
+            'body'   => Petapa::where('id_tienda', 17)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listmetrocentrovillanueva()
+
+    public function listmetrocentrovillanueva($id_tienda)
     {
-        $productos = metrocentrovillanueva::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -336,19 +353,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            minutoMuxbal::create($item);
+            $item['id_tienda'] = 29; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => minutoMuxbal::all(),
+            'body'   => Petapa::where('id_tienda', 29)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listminutoMuxbal()
+    public function listminutoMuxbal( $id_tienda)
     {
-        $productos = minutoMuxbal::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -362,19 +380,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            naranjomall::create($item);
+            $item['id_tienda'] = 14; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => naranjomall::all(),
+            'body'   => Petapa::where('id_tienda', 14)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listnaranjoMall ()
+    public function listnaranjoMall ($id_tienda)
     {
-        $productos = naranjomall::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -388,19 +407,21 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            plazacentral::create($item);
+            $item['id_tienda'] = 8; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => plazacentral::all(),
+            'body'   => Petapa::where('id_tienda', 8)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listplazacentral ()
+
+    public function listplazacentral ($id_tienda)
     {
-        $productos = plazacentral::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -409,18 +430,20 @@ class apicontroller extends Controller
         ]);
     }
 
+
     public function plazamadero(Request $request)
     {
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            plazamadero::create($item);
+            $item['id_tienda'] = 20; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => plazamadero::all(),
+            'body'   => Petapa::where('id_tienda', 20)->get(), // Filtra por el id_tienda
         ]);
     }
 
@@ -440,19 +463,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            praderaxela::create($item);
+            $item['id_tienda'] = 10; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => praderaxela::all(),
+            'body'   => Petapa::where('id_tienda', 10)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listpraderaxela ()
+    public function listpraderaxela ($id_tienda)
     {
-        $productos = praderaxela::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -466,19 +490,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            SanCristobalMixco::create($item);
+            $item['id_tienda'] = 5; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => SanCristobalMixco::all(),
+            'body'   => Petapa::where('id_tienda', 5)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listsanCristobal ()
+    public function listsanCristobal ($id_tienda)
     {
-        $productos = SanCristobalMixco::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -492,19 +517,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            telares::create($item);
+            $item['id_tienda'] = 30; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => telares::all(),
+            'body'   => Petapa::where('id_tienda', 30)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listtelares ()
+    public function listtelares ($id_tienda)
     {
-        $productos = telares::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -518,19 +544,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            vistahermosa::create($item);
+            $item['id_tienda'] = 11; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => vistahermosa::all(),
+            'body'   => Petapa::where('id_tienda', 11)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listvistahermosa ()
+    public function listvistahermosa ($id_tienda)
     {
-        $productos = vistahermosa::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -544,13 +571,14 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            xelaminerva::create($item);
+            $item['id_tienda'] = 9; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => xelaminerva::all(),
+            'body'   => Petapa::where('id_tienda', 9)->get(), // Filtra por el id_tienda
         ]);
     }
 
@@ -570,15 +598,17 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            zona4::create($item);
+            $item['id_tienda'] = 16; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => zona4::all(),
+            'body'   => Petapa::where('id_tienda', 16)->get(), // Filtra por el id_tienda
         ]);
     }
+
 
     public function listzona4 ()
     {
@@ -596,19 +626,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            zona14::create($item);
+            $item['id_tienda'] = 6; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => zona14::all(),
+            'body'   => Petapa::where('id_tienda', 6)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listzona14 ()
+    public function listzona14 ($id_tienda)
     {
-        $productos = zona14::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,
@@ -622,19 +653,20 @@ class apicontroller extends Controller
         $data = $request->json()->all();
 
         foreach ($data as $item) {
-            zona10::create($item);
+            $item['id_tienda'] = 21; // Asigna el id_tienda correspondiente a Petapa
+            Petapa::create($item);
         }
 
         return response()->json([
             'ok'     => true,
             'status' => 200,
-            'body'   => zona10::all(),
+            'body'   => Petapa::where('id_tienda', 21)->get(), // Filtra por el id_tienda
         ]);
     }
 
-    public function listzona10()
+    public function listzona10($id_tienda)
     {
-        $productos = zona10::all();
+        $productos = Petapa::where('id_tienda', $id_tienda)->get();
 
         return response()->json([
             'ok'     => true,

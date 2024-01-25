@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SanCristobalMixco extends Model
 {
     protected $table = 'SanCristobalMixco';
-    
-    protected $fillable = ['post_title', 'sku', 'price','available','time_init','time_end','date_init','date_end','stock','img','categories','id_tienda'];
+
+    protected $fillable = ['ID','post_title', 'sku', 'price','available','time_init','time_end','date_init','date_end','stock','img','categories','id_tienda'];
 }

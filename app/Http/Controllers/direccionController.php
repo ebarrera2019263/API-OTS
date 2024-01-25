@@ -9,24 +9,24 @@ class direccionController extends Controller
 {
     public function postDireccion(Request $request)
     {
-        // Validar los datos de la solicitud
+
         $request->validate([
+
             'Numero' => 'required',
             'Nombre' => 'required',
             'Apellido' => 'required',
             'Nit' => 'required',
             'Direccion' => 'required',
-            'Indicacion' => 'required',
-            'Pais' => 'required',
-            'Departamento' => 'required',
-            'Ciudad' => 'required',
-            'Municipio' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'id_tienda' => 'required',
-            // Otros campos y reglas de validación...
+            'Indicacion' => 'nullable',
+            'Pais' => 'nullable',
+            'Departamento' => 'nullable',
+            'Ciudad' => 'nullable',
+            'Municipio' => 'nullable',
         ]);
 
-        // Crear una nueva instancia del modelo Direccion con los datos de la solicitud
+
         $address = new Direcciones([
             'Numero' => $request->input('Numero'),
             'Nombre' => $request->input('Nombre'),
@@ -41,11 +41,10 @@ class direccionController extends Controller
             'email' => $request->input('email'),
             'id_tienda' => $request->input('id_tienda'),
 
-            
-            // Otros campos...
+
+
         ]);
 
-        // Guardar la nueva dirección en la base de datos
         $address->save();
 
         return response()->json([
@@ -67,12 +66,11 @@ class direccionController extends Controller
         ]);
     }
 
+
     public function deleteDireccion($id)
     {
-        // Buscar la dirección por ID
         $address = Direcciones::find($id);
 
-        // Verificar si la dirección existe
         if (!$address) {
             return response()->json([
                 'ok' => false,
@@ -81,7 +79,6 @@ class direccionController extends Controller
             ], 404);
         }
 
-        // Eliminar la dirección
         $address->delete();
 
         return response()->json([
@@ -90,5 +87,37 @@ class direccionController extends Controller
             'message' => 'Dirección eliminada exitosamente.',
         ]);
     }
+
+    public function putDireccion(Request $request, $id)
+    {
+        $request->validate([
+            // Validaciones similares a las del método postDireccion
+        ]);
+
+        $address = Direcciones::find($id);
+
+        if (!$address) {
+            return response()->json([
+                'ok' => false,
+                'status' => 404,
+                'message' => 'Dirección no encontrada.',
+            ], 404);
+        }
+
+        $address->fill($request->all());
+        $address->save();
+
+        return response()->json([
+            'ok' => true,
+            'status' => 200,
+            'message' => 'Dirección actualizada exitosamente.',
+            'body' => $address,
+        ]);
+    }
+
+
+
+
+
 }
 

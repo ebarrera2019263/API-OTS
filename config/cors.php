@@ -15,7 +15,19 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [
+        'api/*',
+        'sanctum/csrf-cookie',
+        'api/v1/direcciones/{id}' => [
+            'allowed_methods' => ['DELETE'],
+            'allowed_origins' => ['*'],
+            'allowed_headers' => ['*'],
+            'exposed_headers' => [],
+            'max_age' => 0,
+            'supports_credentials' => false,
+        ],
+    ],
+
 
     'allowed_methods' => ['*'],
 

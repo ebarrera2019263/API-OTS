@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('Nit');
             $table->string('Direccion');
             $table->string('Indicacion')->nullable();
-            $table->string('Pais');
-            $table->string('Departamento');
-            $table->string('Ciudad');
-            $table->string('Municipio');
+            $table->string('Pais')->nullable();
+            $table->string('Departamento')->nullable();
+            $table->string('Ciudad')->nullable();
+            $table->string('Municipio')->nullable();
             $table->string('email');
             $table->string('id_tienda');
             $table->timestamps();
